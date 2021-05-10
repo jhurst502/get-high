@@ -15,13 +15,14 @@ class Elevation(Resource):
         latitude = coordinates["records"][0]["fields"]["latitude"]
         longitude = coordinates["records"][0]["fields"]["longitude"]
 
-        # Find elevation of point with OpenTopoData API
-        elevation = requests.get(f"https://api.opentopodata.org/v1/test-dataset?locations={latitude},{longitude}")
+        # Find elevation of point with OpenTopoData API running as microservice
+        elevation = requests.get(f"http://159.203.122.59:5000/v1/etopo1?locations={latitude},{longitude}")
         elevation = elevation.json()
         response = elevation
         
         # Hill climbing algorithm finds the local maximum points 
 
+        # Expand points within a 30mile radius
 
         # TODO look into marshmallow
 
