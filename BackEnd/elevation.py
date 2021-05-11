@@ -1,6 +1,8 @@
 import requests
 from flask import Flask, jsonify, request
+from requests.api import get
 from flask_restful import Resource, Api
+import random, math
 
 app = Flask(__name__)
 api = Api(app)
@@ -16,17 +18,36 @@ class Elevation(Resource):
         longitude = coordinates["records"][0]["fields"]["longitude"]
 
         # Find elevation of point with OpenTopoData API running as microservice
-        elevation = requests.get(f"http://159.203.122.59:5000/v1/etopo1?locations={latitude},{longitude}")
+        elevation = requests.get(f"http://gethighelevation.com:5000/v1/etopo1?locations={latitude},{longitude}")
         elevation = elevation.json()
         response = elevation
         
         # Hill climbing algorithm finds the local maximum points 
+        # First generate 100 lat lon points within 30mile radius
+        points = []
+        for i in range(0, 100):
+            ang = random.uniform(0, 1) * 2 * math.pi
+            hyp = math.sqrt(random.uniform(0, 1)) * 0.5
+            adj = math.cos(ang) * hyp
+            opp = math.sin(ang) * hyp
+            points.append([latitude + adj, longitude + opp]) 
+        
+        for point in points:
+            print(f'\n{point}')
+            latitude = point[0]
+            longitude = point[1]
+            elevation = requests.get(f"http://gethighelevation.com:5000/v1/etopo1?locations={latitude},{longitude}")    
+            elevation = elevation.json()
+            elevation = elevation["results"][0]["elevation"]
+            print(elevation)
 
         # Expand points within a 30mile radius
 
         # TODO look into marshmallow
 
         return response
+    
+           
 
 api.add_resource(Elevation, '/elevation/<zipcode>')
 
