@@ -21,9 +21,9 @@ const Map = () => {
     const map = new mapboxgl.Map({
       container: mapContainer.current,
       style: 'mapbox://styles/mapbox-map-design/ckhqrf2tz0dt119ny6azh975y',
-      center: [coords[1], coords[0]],
-      pitch: 85,
-      bearing: 80,
+      center: [coords[0], coords[1]],
+      pitch: 60,
+      bearing: 0,
       zoom: zoom
     });
 
@@ -55,7 +55,12 @@ const Map = () => {
       });
     });
     return () => map.remove();
-  }, []);
+  }, [coords]);
+
+  useEffect(() => {
+    setLat(coords[0]);
+    setLng(coords[1]);
+  }, [coords])
 
   return (
     <div>
