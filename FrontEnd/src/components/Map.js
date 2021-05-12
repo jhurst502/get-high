@@ -1,8 +1,9 @@
-import React, { useRef, useEffect, useState } from 'react';
+import React, { useRef, useEffect, useState, useContext } from 'react';
 import mapboxgl from 'mapbox-gl/dist/mapbox-gl-csp';
 
 // eslint-disable-next-line import/no-webpack-loader-syntax
 import MapboxWorker from 'worker-loader!mapbox-gl/dist/mapbox-gl-csp-worker';
+import { CoordinatesContext } from '../CoordinatesContext';
 
 
 mapboxgl.workerClass = MapboxWorker;
@@ -14,11 +15,13 @@ const Map = () => {
   const [lat, setLat] = useState(42.35);
   const [zoom, setZoom] = useState(9);
 
+  const {coords, setCoords} = useContext(CoordinatesContext);
+
   useEffect(() => {
     const map = new mapboxgl.Map({
       container: mapContainer.current,
       style: 'mapbox://styles/mapbox-map-design/ckhqrf2tz0dt119ny6azh975y',
-      center: [lng, lat],
+      center: [coords[1], coords[0]],
       pitch: 85,
       bearing: 80,
       zoom: zoom
