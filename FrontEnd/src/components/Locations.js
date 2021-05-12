@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 
 const Locations = (props) => {
 
-    const [isLoading, setIsLoading] = useState(props.click)
+    // const [isLoading, setIsLoading] = useState(props.click)
     const [locations, setLocations] = useState([])
     const [elevations, setElevations] = useState([])
 
@@ -186,8 +186,11 @@ const Locations = (props) => {
                     <div class="py-1 ring-4 w-56 rounded-md font-medium">{elevations[9]}</div>
                 </div>
             );
+        default:
+            return (
+                <div>Location position not loading correctly</div>
+            )
     }
-   
 }
 
 export default Locations;
