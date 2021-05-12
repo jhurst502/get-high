@@ -1,10 +1,13 @@
 import requests, json
+import random, math
 from flask import Flask, jsonify, request
 from requests.api import get
 from flask_restful import Resource, Api
-import random, math
+from flask_cors import CORS
+
 
 app = Flask(__name__)
+CORS(app)
 api = Api(app)
 
 # TODO look into marshmallow, get rid of print statements 

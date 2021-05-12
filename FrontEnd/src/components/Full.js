@@ -5,6 +5,7 @@ const FullMenu = () => {
 
     const [highlightedName, setHighlightedName] = useState(0);
     const [zipcode, setZipcode] = useState();
+    const [clicked, setClicked] = useState(false);
 
     const increment = () => {
         let position = highlightedName;
@@ -33,6 +34,7 @@ const FullMenu = () => {
 
         if(zipcode.length === 5) {
             alert(`Zipcode is ${zipcode}`);
+            setClicked(true);
         }
     }
 
@@ -55,7 +57,7 @@ const FullMenu = () => {
                 </svg>
                 </button>
             </form>
-            <Locations position={highlightedName}></Locations>
+            <Locations position={highlightedName} zipcode={zipcode} click={clicked}></Locations>
             <div class="flex justify-center p-3">
                 <button onClick={decrement} class="bg-yellow-200 h-12 w-12 rounded-full shadow-md focus:outline-none hover:shadow-lg transform hover:scale-105 transition duration-200 ease-in-out">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M7.05 9.293L6.343 10 12 15.657l1.414-1.414L9.172 10l4.242-4.243L12 4.343z"/></svg>

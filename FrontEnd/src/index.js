@@ -12,7 +12,7 @@ mapboxgl.accessToken = 'pk.eyJ1Ijoiamh1cnN0NSIsImEiOiJja28zb2Y4cGMweDVsMnVqbmQ2M
 
 const Map = () => {
   const mapContainer = useRef();
-  const [lng, setLng] = useState(-70.9);
+  const [lng, setLng] = useState(70.9);
   const [lat, setLat] = useState(42.35);
   const [zoom, setZoom] = useState(9);
 
@@ -53,9 +53,6 @@ const Map = () => {
         }
       });
     });
-
-
-
     return () => map.remove();
   }, []);
 
