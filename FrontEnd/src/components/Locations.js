@@ -6,35 +6,6 @@ const Locations = (props) => {
     const [locations, setLocations] = useState([])
     const [elevations, setElevations] = useState([])
 
-    useEffect(() => {
-        fetch(`http://127.0.0.1:5000/elevation/${props.zipcode}`)
-        .then(res => res.json())
-        .then(
-            (result) => {
-                let locationList = []
-                let ele = []
-                
-                if (result.points) {
-                    let numbers = [result.points.one, result.points.two, result.points.three, result.points.four,
-                        result.points.five, result.points.six, result.points.seven, result.points.eight, result.points.nine, result.points.ten]
-
-                    for (const i of numbers) {
-                        locationList.push(i)
-                        ele.push(i.elevation)
-                    }
-                    console.log(locationList)
-                    console.log(ele)
-
-                    setLocations(locationList);
-                    setElevations(ele);
-                }
-            },
-            (error) => {
-                console.log(error);
-            }
-        )
-    }, [props.click])
-
     switch(props.position) {
         case 0:
             return (

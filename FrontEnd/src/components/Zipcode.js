@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
 
 // This component submits Zipcode input to third party APIs to retrieve location data 
-const Zipcode = () => {
+const Zipcode = ({onLoading}) => {
 
     const [zipcode, setZipcode] = useState();
 
     const handleSubmit = (evt) => {
         evt.preventDefault();
-
+        onLoading(true);
         if (zipcode.length === 5) {
             // Make call to api to get data
             fetch(`http://127.0.0.1:5000/elevation/${zipcode}`)
@@ -25,6 +25,8 @@ const Zipcode = () => {
                                 locationList.push(i)
                                 ele.push(i.elevation)
                             }
+                            
+                            onLoading(false);
                             console.log(locationList)
                             console.log(ele)
 
@@ -35,8 +37,6 @@ const Zipcode = () => {
                         console.log(error);
                     }
                 )
-            alert(`Zipcode is ${zipcode}`);
-
         }
     }
 
