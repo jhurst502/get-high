@@ -15,15 +15,18 @@ const Map = () => {
   const [lat, setLat] = useState(42.35);
   const [zoom, setZoom] = useState(9);
 
-  const {coords, setCoords} = useContext(CoordinatesContext);
+  const {coords} = useContext(CoordinatesContext);
 
   useEffect(() => {
+
     // Bound checking on coords fixes iunnitial rendering bug
-    let lattitude = 0;
-    let longitude = 0;
+    let lattitude = 35;
+    let longitude = 35;
     if (coords[1] <= 90 && coords[1] >= -90) {
-      lattitude = coords[0];
-      longitude = coords[1];
+      console.log(coords[0]);
+      console.log(coords[1]);
+      lattitude = coords[1];
+      longitude = coords[0];
     }
     const map = new mapboxgl.Map({
       container: mapContainer.current,

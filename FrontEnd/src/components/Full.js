@@ -17,53 +17,53 @@ const FullMenu = () => {
     // TODO put this ijn a separate file???
     let startingLocations = [
         {
-            "lat": -118.2923,
-            "lng": 36.5785,
+            "lng": -118.2923,
+            "lat": 36.5785,
             "elevation": 14505
         },
         {
-            "lat": -119.5332,
-            "lng": 37.7459,
+            "lng": -119.5332,
+            "lat": 37.7459,
             "elevation": 8839
         },
         {
-            "lat": -151.0070,
-            "lng": 63.0692,
+            "lng": -151.0070,
+            "lat": 63.0692,
             "elevation": 20310
         },
         {
-            "lat": -118.2923,
-            "lng": 36.5785,
+            "lng": -118.2923,
+            "lat": 36.5785,
             "elevation": 14505
         },
         {
-            "lat": -119.5332,
-            "lng": 37.7459,
+            "lng": -119.5332,
+            "lat": 37.7459,
             "elevation": 8839
         },
         {
-            "lat": -151.0070,
-            "lng": 63.0692,
+            "lng": -151.0070,
+            "lat": 63.0692,
             "elevation": 20310
         },
         {
-            "lat": -118.2923,
-            "lng": 36.5785,
+            "lng": -118.2923,
+            "lat": 36.5785,
             "elevation": 14505
         },
         {
-            "lat": -119.5332,
-            "lng": 37.7459,
+            "lng": -119.5332,
+            "lat": 37.7459,
             "elevation": 8839
         },
         {
-            "lat": -151.0070,
-            "lng": 63.0692,
+            "lng": -151.0070,
+            "lat": 63.0692,
             "elevation": 20310
         },
         {
-            "lat": -119.5332,
-            "lng": 37.7459,
+            "lng": -119.5332,
+            "lat": 37.7459,
             "elevation": 8839
         }
     ];
@@ -72,12 +72,13 @@ const FullMenu = () => {
     const [highlightedNumber, sethighlightedNumber] = useState(0);
     const [loading, setLoading] = useState(false);
 
-    // Changes useContext coords when a new location is highlighted 
-    useEffect(() => {
-        let currentCoords = [locations[highlightedNumber].lat, locations[highlightedNumber].lng];
+    // Change highlighed place and coordinate data on button toggle
+    function handleHighlightChange(e) {
+        sethighlightedNumber(e);
+        let currentCoords = [locations[highlightedNumber].lng, locations[highlightedNumber].lat];
         setCoords(currentCoords);
         console.log(currentCoords)
-    }, [highlightedNumber]);
+    }
 
     if (loading === true) {
         return (
@@ -98,7 +99,7 @@ const FullMenu = () => {
                     locationList={locations}>   
                 </Locations>
                 <ToggleButtons 
-                    onToggle={sethighlightedNumber} 
+                    onToggle={handleHighlightChange} 
                     selected={highlightedNumber}>
                 </ToggleButtons>
             </div>
