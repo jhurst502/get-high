@@ -82,14 +82,14 @@ const FullMenu = () => {
 
     if (loading === true) {
         return (
-            <div class="z-20 absolute top-5 right-7 bg-indigo-100 rounded-lg py-4">
+            <div>
                 Insert loading animation here...
             </div>
         );
     }
     else {
         return (
-            <div class="z-20 absolute top-5 right-7 bg-indigo-100 rounded-lg py-4">
+            <div>
                 <Zipcode 
                     onLoading={setLoading}
                     onLocations={setLocations}>
