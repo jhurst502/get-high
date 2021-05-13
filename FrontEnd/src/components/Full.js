@@ -74,7 +74,7 @@ const FullMenu = () => {
 
     // Changes useContext coords when a new location is highlighted 
     useEffect(() => {
-        let currentCoords = [locations[highlightedNumber].lng, locations[highlightedNumber].lat];
+        let currentCoords = [locations[highlightedNumber].lat, locations[highlightedNumber].lng];
         setCoords(currentCoords);
         console.log(currentCoords)
     }, [highlightedNumber]);

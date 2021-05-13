@@ -21,7 +21,7 @@ const Map = () => {
     // Bound checking on coords fixes iunnitial rendering bug
     let lattitude = 0;
     let longitude = 0;
-    if (coords[1] >= 90 || coords[1] <= -90) {
+    if (coords[1] <= 90 && coords[1] >= -90) {
       lattitude = coords[0];
       longitude = coords[1];
     }
@@ -67,7 +67,7 @@ const Map = () => {
   useEffect(() => {
     setLat(coords[0]);
     setLng(coords[1]);
-    setZoom(12);
+    setZoom(14);
   }, [coords])
 
   return (
