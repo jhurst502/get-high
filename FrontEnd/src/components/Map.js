@@ -18,10 +18,17 @@ const Map = () => {
   const {coords, setCoords} = useContext(CoordinatesContext);
 
   useEffect(() => {
+    // Bound checking on coords fixes iunnitial rendering bug
+    let lattitude = 0;
+    let longitude = 0;
+    if (coords[1] >= 90 || coords[1] <= -90) {
+      lattitude = coords[0];
+      longitude = coords[1];
+    }
     const map = new mapboxgl.Map({
       container: mapContainer.current,
       style: 'mapbox://styles/mapbox-map-design/ckhqrf2tz0dt119ny6azh975y',
-      center: [coords[0], coords[1]],
+      center: [longitude, lattitude],
       pitch: 60,
       bearing: 0,
       zoom: zoom
@@ -60,6 +67,7 @@ const Map = () => {
   useEffect(() => {
     setLat(coords[0]);
     setLng(coords[1]);
+    setZoom(12);
   }, [coords])
 
   return (
