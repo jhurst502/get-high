@@ -15,7 +15,6 @@ const ToggleButtons = ({onToggle}) => {
         }
         setSelected(position);
         onToggle(position);
-        console.log(position);
     }
 
     const decrement = () => {
@@ -28,7 +27,6 @@ const ToggleButtons = ({onToggle}) => {
         }
         setSelected(position);
         onToggle(position);
-        console.log(position);
     }
 
     return (

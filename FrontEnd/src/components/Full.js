@@ -21,10 +21,8 @@ const FullMenu = ({ handleLoading, locations, handleLocations }) => {
     const { setCoords } = useContext(CoordinatesContext);
 
     useEffect(() => {
-        console.log(highlightedNumber)
         let currentCoords = [locations[highlightedNumber].lng, locations[highlightedNumber].lat];
         setCoords(currentCoords);
-        console.log(currentCoords)
     }, [highlightedNumber])
 
     return (

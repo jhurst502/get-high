@@ -41,53 +41,60 @@ const Map = () => {
     });
 
     map.on('load', function () {
-      map.addSource('mapbox-dem', {
-        'type': 'raster-dem',
-        'url': 'mapbox://mapbox.mapbox-terrain-dem-v1',
-        'tileSize': 512,
-        'maxzoom': 14
-        });
-      // add the DEM source as a terrain layer with exaggerated height
-      map.setTerrain({ 'source': 'mapbox-dem', 'exaggeration': 1.5 });
-
-      // add a sky layer that will show when the map is highly pitched
-      map.addLayer({
-        'id': 'sky',
-        'type': 'sky',
-        'paint': {
-          'sky-type': 'atmosphere',
-          'sky-atmosphere-sun': [0.0, 0.0],
-          'sky-atmosphere-sun-intensity': 15
-        }
-      });
-
-      // TODO promise here instead of timeout
-      setTimeout(animateMap, 3000)
-
-      function animateMap() {
-        map.flyTo({
-        // These options control the ending camera position: centered at
-        // the target, at zoom level 9, and north up.
-        center: [longitude, lattitude],
-        zoom: 13,
-        bearing: 180,
-         
-        // These options control the flight curve, making it move
-        // slowly and zoom out almost completely before starting
-        // to pan.
-        speed: 0.008, // make the flying slow
-        curve: 2, // change the speed at which it zooms out
-         
-        // This can be any easing function: it takes a number between
-        // 0 and 1 and returns another number between 0 and 1.
-        easing: function (t) {
-        return t;
-        },
-         
-        // this animation is considered essential with respect to prefers-reduced-motion
-        essential: true
+      function render3DPromise() {
+        return new Promise(() => {
+          map.addSource('mapbox-dem', {
+            'type': 'raster-dem',
+            'url': 'mapbox://mapbox.mapbox-terrain-dem-v1',
+            'tileSize': 512,
+            'maxzoom': 14
+          });
+          // add the DEM source as a terrain layer with exaggerated height
+          map.setTerrain({ 'source': 'mapbox-dem', 'exaggeration': 1.5 });
+  
+          // add a sky layer that will show when the map is highly pitched
+          map.addLayer({
+            'id': 'sky',
+            'type': 'sky',
+            'paint': {
+              'sky-type': 'atmosphere',
+              'sky-atmosphere-sun': [0.0, 0.0],
+              'sky-atmosphere-sun-intensity': 15
+            }
+          });
         });
       }
+
+      function animateMap() {
+        setTimeout(() => {
+          map.flyTo({
+            // These options control the ending camera position: centered at
+            // the target, at zoom level 9, and north up.
+            center: [longitude, lattitude],
+            zoom: 13,
+            bearing: 180,
+             
+            // These options control the flight curve, making it move
+            // slowly and zoom out almost completely before starting
+            // to pan.
+            speed: 0.008, // make the flying slow
+            curve: 2, // change the speed at which it zooms out
+             
+            // This can be any easing function: it takes a number between
+            // 0 and 1 and returns another number between 0 and 1.
+            easing: function (t) {
+            return t;
+            },
+             
+            // this animation is considered essential with respect to prefers-reduced-motion
+            essential: true
+            });
+        }, 3500);
+      }
+
+      // Render map in 3D then run animation
+      render3DPromise().then(animateMap());
+
     });
     return () => map.remove();
   }, [coords]);
