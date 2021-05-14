@@ -18,18 +18,14 @@ const FullMenu = ({ handleLoading, locations, handleLocations }) => {
         handleLocations(e);
     }
 
-    const { coords, setCoords } = useContext(CoordinatesContext);
+    const { setCoords } = useContext(CoordinatesContext);
 
-    
-
-
-    // Change highlighed place and coordinate data on button toggle
-    function handleHighlightChange(e) {
-        sethighlightedNumber(e);
+    useEffect(() => {
+        console.log(highlightedNumber)
         let currentCoords = [locations[highlightedNumber].lng, locations[highlightedNumber].lat];
         setCoords(currentCoords);
         console.log(currentCoords)
-    }
+    }, [highlightedNumber])
 
     return (
         <div>
@@ -42,8 +38,7 @@ const FullMenu = ({ handleLoading, locations, handleLocations }) => {
                 locationList={locations}>
             </Locations>
             <ToggleButtons
-                onToggle={handleHighlightChange}
-                selected={highlightedNumber}>
+                onToggle={sethighlightedNumber}>
             </ToggleButtons>
         </div>
     );

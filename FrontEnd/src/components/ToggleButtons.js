@@ -1,31 +1,34 @@
-import React from 'react';
+import React, { useState } from 'react';
 
-const ToggleButtons = ({onToggle, selected}) => {
+const ToggleButtons = ({onToggle}) => {
 
-    function handleChange(e) {
-        onToggle(e);
-    }
+    const [selected, setSelected] = useState(0);
 
+    let position = selected;
     const increment = () => {
-        let position = selected;
+        //let position = selected;
         if (position < 9) {
             position++;
-            handleChange(position);
         }
         else if (position === 9) {
-            handleChange(0);
+            position = 0;
         }
+        setSelected(position);
+        onToggle(position);
+        console.log(position);
     }
 
     const decrement = () => {
-        let position = selected;
+        //let position = selected;
         if (position > 0) {
             position--;
-            handleChange(position);
         }
         else if (position === 0) {
-            handleChange(9);
+            position = 9;
         }
+        setSelected(position);
+        onToggle(position);
+        console.log(position);
     }
 
     return (
