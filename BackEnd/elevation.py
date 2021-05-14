@@ -102,57 +102,62 @@ class Elevation(Resource):
         for p in tenHighestPoints:
             print(p)
 
+        def metersToFeet(meters):
+            feet = meters * 3.2808
+            feet  = round(feet)
+            return feet
+
         highestPointsResponse = {
             "points" : {
                 "one" : {
                     "lat" : tenHighestPoints[0][0],
                     "lng" : tenHighestPoints[0][1],
-                    "elevation": tenHighestPoints[0][2]
+                    "elevation": metersToFeet(tenHighestPoints[0][2])
                 },
                 "two" : {
                     "lat" : tenHighestPoints[1][0],
                     "lng" : tenHighestPoints[1][1],
-                    "elevation": tenHighestPoints[1][2]
+                    "elevation": metersToFeet(tenHighestPoints[1][2])
                 },
                 "three" : {
                     "lat" : tenHighestPoints[2][0],
                     "lng" : tenHighestPoints[2][1],
-                    "elevation": tenHighestPoints[2][2]
+                    "elevation": metersToFeet(tenHighestPoints[2][2])
                 },
                 "four" : {
                     "lat" : tenHighestPoints[3][0],
                     "lng" : tenHighestPoints[3][1],
-                    "elevation": tenHighestPoints[3][2]
+                    "elevation": metersToFeet(tenHighestPoints[3][2])
                 },
                 "five" : {
                     "lat" : tenHighestPoints[4][0],
                     "lng" : tenHighestPoints[4][1],
-                    "elevation": tenHighestPoints[4][2]
+                    "elevation": metersToFeet(tenHighestPoints[4][2])
                 },
                 "six" : {
                     "lat" : tenHighestPoints[5][0],
                     "lng" : tenHighestPoints[5][1],
-                    "elevation": tenHighestPoints[5][2]
+                    "elevation": metersToFeet(tenHighestPoints[5][2])
                 },
                 "seven" : {
                     "lat" : tenHighestPoints[6][0],
                     "lng" : tenHighestPoints[6][1],
-                    "elevation": tenHighestPoints[6][2]
+                    "elevation": metersToFeet(tenHighestPoints[6][2])
                 },
                 "eight" : {
                     "lat" : tenHighestPoints[7][0],
                     "lng" : tenHighestPoints[7][1],
-                    "elevation": tenHighestPoints[7][2]
+                    "elevation": metersToFeet(tenHighestPoints[7][2])
                 },
                 "nine" : {
                     "lat" : tenHighestPoints[8][0],
                     "lng" : tenHighestPoints[8][1],
-                    "elevation": tenHighestPoints[8][2]
+                    "elevation": metersToFeet(tenHighestPoints[8][2])
                 },
                 "ten" : {
                     "lat" : tenHighestPoints[9][0],
                     "lng" : tenHighestPoints[9][1],
-                    "elevation": tenHighestPoints[9][2]
+                    "elevation": metersToFeet(tenHighestPoints[9][2])
                 },
             }
         }
