@@ -67,33 +67,6 @@ const Map = () => {
         });
       }
 
-      // function animateMap() {
-      //   setTimeout(() => {
-      //     map.current.flyTo({
-      //       // These options control the ending camera position: centered at
-      //       // the target, at zoom level 9, and north up.
-      //       center: [longitude, lattitude],
-      //       zoom: 13,
-      //       bearing: 180,
-
-      //       // These options control the flight curve, making it move
-      //       // slowly and zoom out almost completely before starting
-      //       // to pan.
-      //       speed: 0.008, // make the flying slow
-      //       curve: 2, // change the speed at which it zooms out
-
-      //       // This can be any easing function: it takes a number between
-      //       // 0 and 1 and returns another number between 0 and 1.
-      //       easing: function (t) {
-      //       return t;
-      //       },
-
-      //       // this animation is considered essential with respect to prefers-reduced-motion
-      //       essential: true
-      //       });
-      //   }, 3500);
-      // }
-
       // Render map in 3D then run animation
       render3DPromise();
 
@@ -132,6 +105,8 @@ const Map = () => {
         essential: true
       });
     }, 3000);
+
+    new mapboxgl.Marker().setLngLat([coords[0], coords[1]]).addTo(map.current);
   }, [coords])
 
   return (
