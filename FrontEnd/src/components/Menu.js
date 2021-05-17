@@ -15,12 +15,13 @@ const Menu = () => {
     const [locations, setLocations] = useState(startingLocations);
 
     useEffect(() => {
-        lottie.loadAnimation({
+        const menuToggle = lottie.loadAnimation({
             loop: false,
             container: toggleContainer.current,
             animationData: toggle
-        })
-    }, []);
+        });
+        return () => menuToggle.destroy();
+    }, [loading]);
 
     useEffect(() => {
         const animation = lottie.loadAnimation({
