@@ -75,37 +75,35 @@ const Map = () => {
   }, []);
 
   useEffect(() => {
-    setZoom(13);
+    map.current.panTo([coords[0], coords[1]], { zoom: 13, bearing: 0 });
 
-    map.current.panTo([coords[0], coords[1]], {zoom: 13, bearing:0});
+    map.current.once('idle', function () { // Waits for 3D elements to load before animation
+        map.current.flyTo({
+          // These options control the ending camera position: centered at
+          // the target, at zoom level 9, and north up.
+          center: [coords[0], coords[1]],
+          zoom: 13.5,
+          bearing: 180,
+
+          // These options control the flight curve, making it move
+          // slowly and zoom out almost completely before starting
+          // to pan.
+          speed: 0.008, // make the flying slow
+          curve: 2, // change the speed at which it zooms out
+
+          // This can be any easing function: it takes a number between
+          // 0 and 1 and returns another number between 0 and 1.
+          easing: function (t) {
+            return t;
+          },
+          // this animation is considered essential with respect to prefers-reduced-motion
+          essential: true
+        });
+    });
 
 
-    // TODO promise in here
-    console.log('data')
-    setTimeout(() => {
-      map.current.flyTo({
-        // These options control the ending camera position: centered at
-        // the target, at zoom level 9, and north up.
-        center: [coords[0], coords[1]],
-        zoom: 13.5,
-        bearing: 180,
-
-        // These options control the flight curve, making it move
-        // slowly and zoom out almost completely before starting
-        // to pan.
-        speed: 0.008, // make the flying slow
-        curve: 2, // change the speed at which it zooms out
-
-        // This can be any easing function: it takes a number between
-        // 0 and 1 and returns another number between 0 and 1.
-        easing: function (t) {
-          return t;
-        },
-        // this animation is considered essential with respect to prefers-reduced-motion
-        essential: true
-      });
-    }, 3000);
-
+    // Sets marker for each highpoint as it comes into view. 
+    // This could be improved by rendering the markers for all of the high points at once 
     new mapboxgl.Marker().setLngLat([coords[0], coords[1]]).addTo(map.current);
   }, [coords])
 
