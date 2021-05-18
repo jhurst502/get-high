@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 
-const ToggleButtons = ({onToggle}) => {
+const ToggleButtons = ({onToggle, highlighted}) => {
 
     const [selected, setSelected] = useState(0);
 
-    let position = selected;
+    let position = highlighted;
     const increment = () => {
         //let position = selected;
         if (position < 9) {

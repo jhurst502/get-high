@@ -33,9 +33,11 @@ const FullMenu = ({ handleLoading, locations, handleLocations }) => {
             </Zipcode>
             <Locations
                 position={highlightedNumber}
+                changePosition={sethighlightedNumber}
                 locationList={locations}>
             </Locations>
             <ToggleButtons
+                highlighted={highlightedNumber}
                 onToggle={sethighlightedNumber}>
             </ToggleButtons>
         </div>
