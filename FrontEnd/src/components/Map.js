@@ -109,8 +109,8 @@ const Map = () => {
 
   return (
     <div>
-      <div className="sidebar">
-        Longitude: {lng} | Latitude: {lat} | Zoom: {zoom}
+      <div class="z-20 absolute top-5 left-7 bg-indigo-100 rounded-lg py-3 px-4 opacity-95">
+        <h1 class="inline text-gray-600">Longitude: </h1>{coords[0]}  <h1 class="inline text-gray-600">Latitude: </h1>{coords[1]}
       </div>
       <div className="map-container" ref={mapContainer} />
     </div>
