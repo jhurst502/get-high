@@ -87,11 +87,6 @@ def climb(latitude, longitude):
     for p in tenHighestPoints:
         print(p)
 
-    def metersToFeet(meters):
-        feet = meters * 3.2808
-        feet = round(feet)
-        return feet
-
     highestPointsResponse = {
         "points": {
             "one": {
@@ -148,3 +143,9 @@ def climb(latitude, longitude):
     }
 
     return highestPointsResponse
+
+# Elevation is returned in feet 
+def metersToFeet(meters):
+    feet = meters * 3.2808
+    feet = round(feet)
+    return feet
