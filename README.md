@@ -1,3 +1,3 @@
-# get-high: Local elevation tracking to explore highest points near you!
+# Get-High: Explore local highpoints across the United States!
 
-![Elevation View Demo](./Images/gethighdemo.png?raw=true)
+![Elevation View Demo](/Images/gethighdemo.PNG?raw=true)
