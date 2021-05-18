@@ -1,19 +1,38 @@
 import requests, json
 import random, math
+import pymongo
 from flask import Flask, jsonify, request
 from requests.api import get
 from flask_restful import Resource, Api
 from flask_cors import CORS
+from pymongo import MongoClient
+from dotenv import dotenv_values
 
+config = dotenv_values(".env")
+
+DB_USER = config["DB_USER"]
+DB_PASSWORD = config["DB_PASSWORD"]
+
+# Connects to test database 
+cluster = MongoClient(f'mongodb+srv://{DB_USER}:{DB_PASSWORD}@cluster0.1lqdp.mongodb.net/test?authSource=admin&replicaSet=atlas-n32ejh-shard-0&readPreference=primary&appname=MongoDB%20Compass&ssl=true')
+db = cluster["highpoints"]
+collection = db["elevation"]
 
 app = Flask(__name__)
 CORS(app)
-api = Api(app)
+api = Api(app) 
 
-# TODO look into marshmallow, get rid of print statements 
 
+# END DATABASE SCHEMA
 class Elevation(Resource):
     def get(self, zipcode):
+
+        # First check to see if data for zipcode is already in database 
+        existingData = (collection.find_one({"_id": zipcode}))
+        if existingData != None:
+            print(existingData)
+            return(existingData)
+            
         # Get radius of coordinates from zipcode using 
         # us-zip-code-lattitude-and-longitude api from opendatasoft
         coordinates = requests.get(f"https://public.opendatasoft.com/api/records/1.0/search/?dataset=us-zip-code-latitude-and-longitude&q={zipcode}")
@@ -161,6 +180,9 @@ class Elevation(Resource):
                 },
             }
         }
+        
+        # Add calculated data to the database 
+        collection.insert_one({"_id": zipcode, "points": highestPointsResponse["points"]})
 
         return jsonify(highestPointsResponse)
     

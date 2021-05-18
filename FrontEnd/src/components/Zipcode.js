@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
 
 // This component submits Zipcode input to third party APIs to retrieve location data 
-const Zipcode = ({onLoading, onLocations}) => {
+const Zipcode = ({ onLoading, onLocations }) => {
 
     const [zipcode, setZipcode] = useState();
+    //TODO pass error up to cancel loading if cannont connect to backend
+    const [error, setError] = useState(null);
 
     const handleSubmit = (evt) => {
         evt.preventDefault();
@@ -27,11 +29,11 @@ const Zipcode = ({onLoading, onLocations}) => {
                             onLoading(false);
                             console.log(locationList);
                         }
-                    },
-                    (error) => {
-                        console.log(error);
-                    }
-                )
+                    })
+                .catch(error => {
+                    console.log(error.message);
+                    setError(error.message);
+                })
         }
     }
 
