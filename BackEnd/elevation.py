@@ -22,7 +22,6 @@ api = Api(app)
 
 class Elevation(Resource):
     def get(self, zipcode):
-
         # First check to see if data for zipcode is already in database 
         existingData = (collection.find_one({"_id": zipcode}))
         if existingData != None:
@@ -46,9 +45,7 @@ class Elevation(Resource):
         
         # Add calculated data to the database 
         collection.insert_one({"_id": zipcode, "points": response["points"]})
-
-        return jsonify(response)
-    
+        return jsonify(response)    
            
 
 api.add_resource(Elevation, '/elevation/<zipcode>')

@@ -54,7 +54,7 @@ const Menu = () => {
             <div class="z-20 absolute top-5 right-7 bg-indigo-100 rounded-lg py-4 opacity-95">
                 <div ref={loadingContainer}></div>
                 <h2 class="flex justify-center font-medium px-3 text-base">Give us time to perform calculations</h2>
-                <h3 class="flex justify-center font-normal px-3 py-1 text-sm">Average compute time is INSERT HERE</h3>
+                <h3 class="flex justify-center font-normal px-3 py-1 text-sm">Average compute time is around 4 minutes</h3>
             </div>
         );
     }
