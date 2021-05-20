@@ -12,7 +12,7 @@ const Zipcode = ({ onLoading, onLocations }) => {
         onLoading(true);
         if (zipcode.length === 5) {
             // Make call to api to get data
-            fetch(`http://127.0.0.1:5000/elevation/${zipcode}`)
+            fetch(`https://www.gethighelevation.com/elevation/${zipcode}`)
                 .then(res => res.json())
                 .then(
                     (result) => {
