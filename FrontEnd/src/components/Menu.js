@@ -60,8 +60,8 @@ const Menu = () => {
     }
     if (!loading) {
         return (
-            <div class="z-20 absolute top-5 right-7 bg-indigo-100 rounded-lg py-4 opacity-95">
-                <button class="w-9 h-9 focus:outline-none p-1 absolute top-1 right-1 bg-indigo-100 rounded-lg" onClick={handle} ref={toggleContainer} />
+            <div class="z-20 grid justify-items-end absolute top-3 right-3 sm:top-5 sm:right-7 bg-indigo-100 rounded-lg p-1 sm:p-1.5 opacity-95">
+                <button class="w-12 h-12 sm:w-8 sm:h-8 focus:outline-none rounded-lg" onClick={handle} ref={toggleContainer} />
                 {opened ? <FullMenu locations={locations} handleLocations={setLocations} handleLoading={setLoading} /> : <></>}
             </div>
         );
