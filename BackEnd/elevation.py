@@ -35,10 +35,6 @@ class Elevation(Resource):
 
         latitude = coordinates["records"][0]["fields"]["latitude"]
         longitude = coordinates["records"][0]["fields"]["longitude"]
-
-        # Find elevation of point with OpenTopoData API running as microservice
-        elevation = requests.get(f"http://gethighelevation.com:5000/v1/etopo1?locations={latitude},{longitude}")
-        elevation = elevation.json()
         
         # Hill climbing algorithm finds the local maximum points 
         response = climb(latitude, longitude)
