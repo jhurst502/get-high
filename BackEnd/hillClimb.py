@@ -19,7 +19,7 @@ def climb(latitude, longitude):
         latitude = point[0]
         longitude = point[1]
         elevation = requests.get(
-            f"http://gethighelevation.com:5000/v1/etopo1?locations={latitude},{longitude}")
+            f"https://topo.gethighelevation.com/v1/etopo1?locations={latitude},{longitude}")
         elevation = elevation.json()
         elevation = elevation["results"][0]["elevation"]
         point[2] = elevation
@@ -36,22 +36,22 @@ def climb(latitude, longitude):
 
         # Query API for elevation of each point
         pointOneElevation = requests.get(
-            f"http://gethighelevation.com:5000/v1/etopo1?locations={pointOne[0]},{pointOne[1]}")
+            f"https://topo.gethighelevation.com/v1/etopo1?locations={pointOne[0]},{pointOne[1]}")
         pointOneElevation = pointOneElevation.json()
         pointOneElevation = pointOneElevation["results"][0]["elevation"]
 
         pointTwoElevation = requests.get(
-            f"http://gethighelevation.com:5000/v1/etopo1?locations={pointTwo[0]},{pointTwo[1]}")
+            f"https://topo.gethighelevation.com/v1/etopo1?locations={pointTwo[0]},{pointTwo[1]}")
         pointTwoElevation = pointTwoElevation.json()
         pointTwoElevation = pointTwoElevation["results"][0]["elevation"]
 
         pointThreeElevation = requests.get(
-            f"http://gethighelevation.com:5000/v1/etopo1?locations={pointThree[0]},{pointThree[1]}")
+            f"https://topo.gethighelevation.com/v1/etopo1?locations={pointThree[0]},{pointThree[1]}")
         pointThreeElevation = pointThreeElevation.json()
         pointThreeElevation = pointThreeElevation["results"][0]["elevation"]
 
         pointFourElevation = requests.get(
-            f"http://gethighelevation.com:5000/v1/etopo1?locations={pointFour[0]},{pointFour[1]}")
+            f"https://topo.gethighelevation.com/v1/etopo1?locations={pointFour[0]},{pointFour[1]}")
         pointFourElevation = pointFourElevation.json()
         pointFourElevation = pointFourElevation["results"][0]["elevation"]
 
