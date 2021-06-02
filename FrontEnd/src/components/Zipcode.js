@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import allZipCodes from '../zipCodeData';
 
 // This component submits Zipcode input to third party APIs to retrieve location data 
 const Zipcode = ({ onLoading, onLocations }) => {
@@ -10,7 +11,7 @@ const Zipcode = ({ onLoading, onLocations }) => {
     const handleSubmit = (evt) => {
         evt.preventDefault();
         onLoading(true);
-        if (zipcode.length === 5) {
+        if (zipcode.length === 5 && allZipCodes.includes(zipcode)) {   // validate zipcode length and check if it is a real zipcode 
             // Make call to api to get data
             fetch(`https://www.gethighelevation.com/elevation/${zipcode}`)
                 .then(res => res.json())
@@ -34,6 +35,10 @@ const Zipcode = ({ onLoading, onLocations }) => {
                     console.log(error.message);
                     setError(error.message);
                 })
+        }
+        else {
+            onLoading(false);
+            alert("Sorry, it seems that the zipcode you entered does not exist");
         }
     }
 
