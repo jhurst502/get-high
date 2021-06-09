@@ -4,12 +4,13 @@ import mapboxgl from 'mapbox-gl/dist/mapbox-gl-csp';
 // eslint-disable-next-line import/no-webpack-loader-syntax
 import MapboxWorker from 'worker-loader!mapbox-gl/dist/mapbox-gl-csp-worker';
 import { CoordinatesContext } from '../CoordinatesContext';
+import { Marker } from 'mapbox-gl';
 
 
 mapboxgl.workerClass = MapboxWorker;
 mapboxgl.accessToken = 'pk.eyJ1Ijoiamh1cnN0NSIsImEiOiJja28zb2Y4cGMweDVsMnVqbmQ2MjJjYWM5In0.fNJOa1thSU7wI9IKSJSTLA';
 
-const Map = () => {
+const Map = ({locations}) => {
   const mapContainer = useRef(null);
   const map = useRef(null);
   const [lng, setLng] = useState(70.9);
@@ -31,7 +32,7 @@ const Map = () => {
       container: mapContainer.current,
       style: 'mapbox://styles/mapbox-map-design/ckhqrf2tz0dt119ny6azh975y',
       center: [longitude - .01, lattitude - .01],
-      pitch: 60,
+      pitch: 55,
       bearing: 0,
       zoom: zoom,
     });
@@ -68,10 +69,28 @@ const Map = () => {
 
       // Render map in 3D then run animation
       render3DPromise();
-
+    
+     
     });
     return () => map.current.remove();
   }, []);
+
+  useEffect(() => {
+    // TODO remove all markers once new zipcode is selected 
+    // Sets marker for each highpoint as each zip location changes 
+    // All old markers are removed once a new zipcode is requested
+    const marker0 = new mapboxgl.Marker().setLngLat([locations[0].lng, locations[0].lat]).addTo(map.current);
+    const marker1 = new mapboxgl.Marker().setLngLat([locations[1].lng, locations[1].lat]).addTo(map.current);
+    const marker2 = new mapboxgl.Marker().setLngLat([locations[2].lng, locations[2].lat]).addTo(map.current);
+    const marker3 = new mapboxgl.Marker().setLngLat([locations[3].lng, locations[3].lat]).addTo(map.current);
+    const marker4 = new mapboxgl.Marker().setLngLat([locations[4].lng, locations[4].lat]).addTo(map.current);
+    const marker5 = new mapboxgl.Marker().setLngLat([locations[5].lng, locations[5].lat]).addTo(map.current);
+    const marker6 = new mapboxgl.Marker().setLngLat([locations[6].lng, locations[6].lat]).addTo(map.current);
+    const marker7 = new mapboxgl.Marker().setLngLat([locations[7].lng, locations[7].lat]).addTo(map.current);
+    const marker8 = new mapboxgl.Marker().setLngLat([locations[8].lng, locations[8].lat]).addTo(map.current);
+    const marker9 = new mapboxgl.Marker().setLngLat([locations[9].lng, locations[9].lat]).addTo(map.current);
+    
+  }, [locations]);
 
   useEffect(() => {
     map.current.panTo([coords[0], coords[1]], { zoom: 13, bearing: 0 });
@@ -90,10 +109,8 @@ const Map = () => {
     function easeIn(t) {
       return t;
     }
-    // Sets marker for each highpoint as it comes into view. 
-    // This could be improved by rendering the markers for all of the high points at once 
-    new mapboxgl.Marker().setLngLat([coords[0], coords[1]]).addTo(map.current);
-  }, [coords])
+
+  }, [coords]);
 
   return (
     <div>

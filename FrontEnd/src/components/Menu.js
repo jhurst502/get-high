@@ -1,18 +1,17 @@
 import React, { useEffect, useState } from 'react';
 import FullMenu from './Full';
-import startingLocations from '../defaultLocations'
 import toggle from '../animations/toggleLottie.json'
 import loadingAnimation from '../animations/loadingLottie.json';
 import lottie from 'lottie-web';
 
 
-const Menu = () => {
+const Menu = ({locations, setLocations}) => {
     let toggleContainer = React.createRef();
     let loadingContainer = React.createRef();
 
     const [opened, setOpened] = useState(true);
     const [loading, setLoading] = useState(false);
-    const [locations, setLocations] = useState(startingLocations);
+    
 
     useEffect(() => {
         const menuToggle = lottie.loadAnimation({
