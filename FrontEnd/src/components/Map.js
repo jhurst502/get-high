@@ -79,16 +79,16 @@ const Map = ({locations}) => {
     // TODO remove all markers once new zipcode is selected 
     // Sets marker for each highpoint as each zip location changes 
     // All old markers are removed once a new zipcode is requested
-    const marker0 = new mapboxgl.Marker().setLngLat([locations[0].lng, locations[0].lat]).addTo(map.current);
-    const marker1 = new mapboxgl.Marker().setLngLat([locations[1].lng, locations[1].lat]).addTo(map.current);
-    const marker2 = new mapboxgl.Marker().setLngLat([locations[2].lng, locations[2].lat]).addTo(map.current);
-    const marker3 = new mapboxgl.Marker().setLngLat([locations[3].lng, locations[3].lat]).addTo(map.current);
-    const marker4 = new mapboxgl.Marker().setLngLat([locations[4].lng, locations[4].lat]).addTo(map.current);
-    const marker5 = new mapboxgl.Marker().setLngLat([locations[5].lng, locations[5].lat]).addTo(map.current);
-    const marker6 = new mapboxgl.Marker().setLngLat([locations[6].lng, locations[6].lat]).addTo(map.current);
-    const marker7 = new mapboxgl.Marker().setLngLat([locations[7].lng, locations[7].lat]).addTo(map.current);
-    const marker8 = new mapboxgl.Marker().setLngLat([locations[8].lng, locations[8].lat]).addTo(map.current);
-    const marker9 = new mapboxgl.Marker().setLngLat([locations[9].lng, locations[9].lat]).addTo(map.current);
+    const marker0 = new mapboxgl.Marker({scale: .9, color: '#EB5B55'}).setLngLat([locations[0].lng, locations[0].lat]).addTo(map.current);
+    const marker1 = new mapboxgl.Marker({scale: .9, color: '#EB5B55'}).setLngLat([locations[1].lng, locations[1].lat]).addTo(map.current);
+    const marker2 = new mapboxgl.Marker({scale: .9, color: '#EB5B55'}).setLngLat([locations[2].lng, locations[2].lat]).addTo(map.current);
+    const marker3 = new mapboxgl.Marker({scale: .9, color: '#EB5B55'}).setLngLat([locations[3].lng, locations[3].lat]).addTo(map.current);
+    const marker4 = new mapboxgl.Marker({scale: .9, color: '#EB5B55'}).setLngLat([locations[4].lng, locations[4].lat]).addTo(map.current);
+    const marker5 = new mapboxgl.Marker({scale: .9, color: '#EB5B55'}).setLngLat([locations[5].lng, locations[5].lat]).addTo(map.current);
+    const marker6 = new mapboxgl.Marker({scale: .9, color: '#EB5B55'}).setLngLat([locations[6].lng, locations[6].lat]).addTo(map.current);
+    const marker7 = new mapboxgl.Marker({scale: .9, color: '#EB5B55'}).setLngLat([locations[7].lng, locations[7].lat]).addTo(map.current);
+    const marker8 = new mapboxgl.Marker({scale: .9, color: '#EB5B55'}).setLngLat([locations[8].lng, locations[8].lat]).addTo(map.current);
+    const marker9 = new mapboxgl.Marker({scale: .9, color: '#EB5B55'}).setLngLat([locations[9].lng, locations[9].lat]).addTo(map.current);
     
   }, [locations]);
 
