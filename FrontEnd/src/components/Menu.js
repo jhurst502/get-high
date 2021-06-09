@@ -50,7 +50,7 @@ const Menu = ({locations, setLocations}) => {
 
     if (loading) {
         return (
-            <div class="z-20 absolute top-5 right-7 bg-blue-100 rounded-lg py-4 opacity-95">
+            <div class="z-20 absolute top-5 right-7 bg-gray-100 rounded-lg py-4 opacity-95">
                 <div ref={loadingContainer}></div>
                 <h2 class="flex justify-center font-medium px-3 text-base">Give us time to perform calculations</h2>
                 <h3 class="flex justify-center font-normal px-3 py-1 text-sm">Average compute time is around 4 minutes</h3>
@@ -59,7 +59,7 @@ const Menu = ({locations, setLocations}) => {
     }
     if (!loading) {
         return (
-            <div class="z-20 grid justify-items-end absolute top-3 right-3 sm:top-5 sm:right-7 sm:bg-blue-100 rounded-lg p-1 sm:p-1.5 opacity-95">
+            <div class="z-20 grid justify-items-end absolute top-3 right-3 sm:top-5 sm:right-7 bg-gray-100 rounded-lg p-1 sm:p-1.5 opacity-95">
                 <button class="w-12 h-12 sm:w-8 sm:h-8 focus:outline-none rounded-lg" onClick={handle} ref={toggleContainer} />
                 {opened ? <FullMenu locations={locations} handleLocations={setLocations} handleLoading={setLoading} /> : <></>}
             </div>
