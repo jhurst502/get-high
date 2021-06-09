@@ -114,7 +114,7 @@ const Map = ({locations}) => {
 
   return (
     <div>
-      <div class="z-20 py-1 px-3 absolute left-5 top-5 sm:left-7 bg-indigo-100 rounded-lg sm:py-3 sm:px-4 opacity-95">
+      <div class="z-20 py-1 px-3 absolute left-5 top-5 sm:left-7 bg-blue-100 rounded-lg sm:py-3 sm:px-4 opacity-95">
         <h1 class="inline text-gray-600">Longitude: </h1>{parseFloat(coords[0]).toFixed(4)}  <h1 class="inline text-gray-600">Latitude: </h1>{parseFloat(coords[1]).toFixed(4)}
       </div>
       <div className="map-container" ref={mapContainer} />
