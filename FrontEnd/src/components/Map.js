@@ -1,13 +1,7 @@
 import React, { useRef, useEffect, useState, useContext } from 'react';
-import mapboxgl from 'mapbox-gl/dist/mapbox-gl-csp';
-
-// eslint-disable-next-line import/no-webpack-loader-syntax
-import MapboxWorker from 'worker-loader!mapbox-gl/dist/mapbox-gl-csp-worker';
+import mapboxgl from '!mapbox-gl'; // eslint-disable-line import/no-webpack-loader-syntax
 import { CoordinatesContext } from '../CoordinatesContext';
-import { Marker } from 'mapbox-gl';
 
-
-mapboxgl.workerClass = MapboxWorker;
 mapboxgl.accessToken = 'pk.eyJ1Ijoiamh1cnN0NSIsImEiOiJja28zb2Y4cGMweDVsMnVqbmQ2MjJjYWM5In0.fNJOa1thSU7wI9IKSJSTLA';
 
 const Map = ({locations}) => {
@@ -27,6 +21,7 @@ const Map = ({locations}) => {
       lattitude = coords[1];
       longitude = coords[0];
     }
+
     if (map.current) return;
     map.current = new mapboxgl.Map({
       container: mapContainer.current,
@@ -42,15 +37,12 @@ const Map = ({locations}) => {
       setLat(map.current.getCenter().lat.toFixed(4));
       setZoom(map.current.getZoom().toFixed(2));
 
-      // add fog
-      map.current.on('load', () => {
-        map.current.setFog({
-          'range': [0, 6],
-          'color': '#f2f8fa',
-          'horizon-blend': 0.1
-        });
-      })
-
+      // TODO this just quit working all of a sudden
+      // map.current.setFog({
+      //   'range': [0, 6],
+      //   'color': '#f2f8fa',
+      //   'horizon-blend': 0.1
+      // });
     });
 
     map.current.on('load', function () {
@@ -117,7 +109,7 @@ const Map = ({locations}) => {
       <div class="z-20 py-1 px-3 absolute left-5 top-5 sm:left-7 bg-gray-100 rounded-lg sm:py-3 sm:px-4 opacity-95">
         <h1 class="inline text-gray-600">Longitude: </h1>{parseFloat(coords[0]).toFixed(4)}  <h1 class="inline text-gray-600">Latitude: </h1>{parseFloat(coords[1]).toFixed(4)}
       </div>
-      <div className="map-container" ref={mapContainer} />
+      <div  ref={mapContainer} className="map-container" />
     </div>
   );
 };
