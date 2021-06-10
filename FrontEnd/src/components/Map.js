@@ -1,4 +1,4 @@
-import React, { useRef, useEffect, useState, useContext } from 'react';
+import React, { useRef, useEffect, useState, useContext, version } from 'react';
 import mapboxgl from '!mapbox-gl'; // eslint-disable-line import/no-webpack-loader-syntax
 import { CoordinatesContext } from '../CoordinatesContext';
 
@@ -38,12 +38,17 @@ const Map = ({locations}) => {
       setZoom(map.current.getZoom().toFixed(2));
 
       // TODO this just quit working all of a sudden
-      // map.current.setFog({
-      //   'range': [0, 6],
-      //   'color': '#f2f8fa',
-      //   'horizon-blend': 0.1
-      // });
+      map.current.on('load', () => {
+        map.current.setFog({
+          'range': [0, 6],
+          'color': '#f2f8fa',
+          'horizon-blend': 0.2
+        });
+      });
+      
     });
+
+    console.log(map.current.version)
 
     map.current.on('load', function () {
       function render3DPromise() {
