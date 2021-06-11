@@ -37,7 +37,7 @@ const Map = ({locations}) => {
       setLat(map.current.getCenter().lat.toFixed(4));
       setZoom(map.current.getZoom().toFixed(2));
 
-      // TODO this just quit working all of a sudden
+      // add fog
       map.current.on('load', () => {
         map.current.setFog({
           'range': [0, 6],
