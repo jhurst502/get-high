@@ -29,6 +29,7 @@ const Map = ({locations}) => {
       lattitude = coords[1];
       longitude = coords[0];
     }
+
     if (map.current) return;
     map.current = new mapboxgl.Map({
       container: mapContainer.current,
@@ -49,9 +50,9 @@ const Map = ({locations}) => {
         map.current.setFog({
           'range': [0, 6],
           'color': '#f2f8fa',
-          'horizon-blend': 0.1
+          'horizon-blend': 0.2
         });
-      })
+      });
 
     });
 

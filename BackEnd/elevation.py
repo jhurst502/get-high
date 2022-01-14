@@ -12,9 +12,10 @@ DB_USER = config["DB_USER"]
 DB_PASSWORD = config["DB_PASSWORD"]
 
 # Connects to test database 
-cluster = MongoClient(f'mongodb+srv://{DB_USER}:{DB_PASSWORD}@cluster0.1lqdp.mongodb.net/test?authSource=admin&replicaSet=atlas-n32ejh-shard-0&readPreference=primary&appname=MongoDB%20Compass&ssl=true')
+cluster = MongoClient(f'mongodb+srv://{DB_USER}:{DB_PASSWORD}@highpoints.ukcju.mongodb.net/test')
 db = cluster["highpoints"]
 collection = db["elevation"]
+coordinatesCollection = db["coordinates"]
 
 app = Flask(__name__)
 CORS(app)
@@ -28,13 +29,10 @@ class Elevation(Resource):
             print(existingData)
             return(existingData)
             
-        # Get radius of coordinates from zipcode using 
-        # us-zip-code-lattitude-and-longitude api from opendatasoft
-        coordinates = requests.get(f"https://public.opendatasoft.com/api/records/1.0/search/?dataset=us-zip-code-latitude-and-longitude&q={zipcode}")
-        coordinates = coordinates.json()
-
-        latitude = coordinates["records"][0]["fields"]["latitude"]
-        longitude = coordinates["records"][0]["fields"]["longitude"]
+        # Get radius of coordinates from zipcode using coordinate collection in database 
+        coordinates = coordinatesCollection.find_one({"zip": zipcode})
+        latitude = coordinates["lat"]
+        longitude = coordinates["lng"]
         
         # Hill climbing algorithm finds the local maximum points 
         response = climb(latitude, longitude)
