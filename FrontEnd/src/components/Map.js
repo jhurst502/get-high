@@ -8,6 +8,8 @@ import { Marker } from 'mapbox-gl';
 
 
 mapboxgl.workerClass = MapboxWorker;
+
+// TODO put this in env variables
 mapboxgl.accessToken = 'pk.eyJ1Ijoiamh1cnN0NSIsImEiOiJja28zb2Y4cGMweDVsMnVqbmQ2MjJjYWM5In0.fNJOa1thSU7wI9IKSJSTLA';
 
 const Map = ({locations}) => {
@@ -76,8 +78,8 @@ const Map = ({locations}) => {
   }, []);
 
   useEffect(() => {
-    // TODO remove all markers once new zipcode is selected 
-    // Sets marker for each highpoint as each zip location changes 
+    // TODO remove all markers once new zipcode is selected
+    // Sets marker for each highpoint as each zip location changes
     // All old markers are removed once a new zipcode is requested
     const marker0 = new mapboxgl.Marker({scale: .9, color: '#EB5B55'}).setLngLat([locations[0].lng, locations[0].lat]).addTo(map.current);
     const marker1 = new mapboxgl.Marker({scale: .9, color: '#EB5B55'}).setLngLat([locations[1].lng, locations[1].lat]).addTo(map.current);
@@ -89,7 +91,7 @@ const Map = ({locations}) => {
     const marker7 = new mapboxgl.Marker({scale: .9, color: '#EB5B55'}).setLngLat([locations[7].lng, locations[7].lat]).addTo(map.current);
     const marker8 = new mapboxgl.Marker({scale: .9, color: '#EB5B55'}).setLngLat([locations[8].lng, locations[8].lat]).addTo(map.current);
     const marker9 = new mapboxgl.Marker({scale: .9, color: '#EB5B55'}).setLngLat([locations[9].lng, locations[9].lat]).addTo(map.current);
-    
+
   }, [locations]);
 
   useEffect(() => {
@@ -114,8 +116,8 @@ const Map = ({locations}) => {
 
   return (
     <div>
-      <div class="z-20 py-1 px-3 absolute left-5 top-5 sm:left-7 bg-gray-100 rounded-lg sm:py-3 sm:px-4 opacity-95">
-        <h1 class="inline text-gray-600">Longitude: </h1>{parseFloat(coords[0]).toFixed(4)}  <h1 class="inline text-gray-600">Latitude: </h1>{parseFloat(coords[1]).toFixed(4)}
+      <div className="z-20 py-1 px-3 absolute left-5 top-5 sm:left-7 bg-gray-100 rounded-lg sm:py-3 sm:px-4 opacity-95">
+        <h1 className="inline text-gray-600">Longitude: </h1>{parseFloat(coords[0]).toFixed(4)}  <h1 class="inline text-gray-600">Latitude: </h1>{parseFloat(coords[1]).toFixed(4)}
       </div>
       <div className="map-container" ref={mapContainer} />
     </div>
